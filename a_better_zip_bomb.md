@@ -10,7 +10,7 @@
 
 # 简述  
 
-此文章展示了如何构建一个通过在 Zip 容器里重叠文件来实现高压缩比且*非递归* 的 [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。“非递归”指它不需要解压者来解压嵌套在Zip文件里的 Zip 文件，只需解压一次。与输入大小相比，输出大小呈二次方增长。压缩比高达 2,800 万（10MB→281TB），达到了Zip格式的极限。更高的比率通过64位扩展也可以实现。这种构建方法只用到了与大部分Zip解析器兼容，且最常用的 Deflate 压缩算法。 
+此文章展示了如何构建一个通过在 Zip 容器里重叠文件来实现高压缩比且*非递归* 的 [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。“非递归”指它不需要解压者来解压嵌套在Zip文件里的 Zip 文件，只需解压一次。与输入大小相比，输出大小呈二次方增长。压缩比高达 2,800 万（10MB→281TB），达到了 Zip 格式的极限。更高的比率通过64位扩展也可以实现。这种构建方法只用到了与大部分Zip解析器兼容，且最常用的 Deflate 压缩算法。 
 
 | [zbsm.zip](https://www.bamsoftware.com/hacks/zipbomb/zbsm.zip) | 42 kB | →    | 5.5 GB                          |
 | ------------------------------------------------------------ | ----- | ---- | ------------------------------- |
@@ -51,7 +51,7 @@
   
 ---
 
-使用Zip格式的压缩炸弹必须面对一个事实：最常被Zip解析器支持的压缩算法DEFLATE**[达不到](https://www.zlib.net/zlib_tech.html)**比1032更高的压缩率。因此，Zip炸弹通常依靠递归（在Zip文件内存放Zip文件）实现每一层高于1032的额外压缩率。但这种方法只有在递归解压时才有效，而大多数软件不会全部递归解压。最有名的Zip炸弹（[42.zip](https://www.unforgettable.dk/)），如果其中的六层全部解压，解压后的文件大小可达吓人的4.5PB，但第一层解压后，只有微小的0.6MB。*Zip quines*，比如说 [Ellingsen](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) 和 [Cox](https://research.swtch.com/zip)，在Zip包中有自己的副本，如果递归解压时才会膨胀到无限。只解压一次的话，是非常安全的。
+使用Zip格式的压缩炸弹必须面对一个事实：最常被Zip解析器支持的压缩算法DEFLATE**[达不到](https://www.zlib.net/zlib_tech.html)**比1032更高的压缩率。因此，Zip炸弹通常依靠递归（在Zip文件内存放Zip文件）实现每一层高于1032的额外压缩率。但这种方法只有在递归解压时才有效，而大多数软件不会全部递归解压。最有名的Zip炸弹（[42.zip](https://www.unforgettable.dk/)），如果其中的六层全部解压，解压后的文件大小可达吓人的4.5PB，但第一层解压后，只有微小的0.6MB。*Zip quines*，比如说 [Ellingsen](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) 和 [Cox](https://research.swtch.com/zip)，在Zip包中有自己的副本。递归解压时才会膨胀到无限。只解压一次的话，是非常安全的。
 
 This article shows how to construct a non-recursive zip bomb whose compression ratio surpasses the DEFLATE limit of 1032. It works by overlapping files inside the zip container, in order to reference a "kernel" of highly compressed data in multiple files, without making multiple copies of it. The zip bomb's output size grows quadratically in the input size; i.e., the compression ratio gets better as the bomb gets bigger. The construction depends on features of both zip and DEFLATE—it is not directly portable to other file formats or compression algorithms. It is compatible with most zip parsers, the exceptions being "streaming" parsers that parse in one pass without first consulting the zip file's central directory. We try to balance two conflicting goals:
 
