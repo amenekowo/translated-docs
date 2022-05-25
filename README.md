@@ -1,2 +1,2 @@
 # translated-docs
-Some translated docs by me.
+Translated something interesting by me.
