@@ -1,25 +1,271 @@
-原文链接：[A better zip bomb](https://www.bamsoftware.com/hacks/zipbomb/)。 **一切版权归原作者所有。**
+<style>
+article {
+	width: 75%;
+	max-width: 50rem;
+}
+a {
+	color: royalblue;
+}
+a.footnote {
+	text-decoration: none;
+}
+small, #comparison caption, .download pre {
+	font-size: 82%;
+}
+abbr {
+	text-decoration: none;
+}
+kbd {
+	font-weight: bold;
+}
+section {
+	margin-top: 4rem;
+}
+date {
+	white-space: nowrap;
+}
+#summary {
+	margin: 0 auto;
+	padding: 1rem;
+	width: 80%;
+	background-color: whitesmoke;
+}
+#summary h2 {
+	font-size: inherit;
+	display: inline;
+	margin-right: 1em;
+}
+#summary h2 + * {
+	display: inline;
+}
+#summary > :first-child {
+	margin-top: 0;
+}
+#summary :last-child {
+	margin-bottom: 0;
+}
+#source pre {
+	margin: 0;
+}
+table {
+	border-collapse: collapse;
+}
+table th, table td
+{
+	padding: 0 0.5em;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+	vertical-align: baseline;
+}
+table tr > :first-child {
+	padding-left: 0;
+}
+table caption {
+	text-align: inherit;
+	caption-side: bottom;
+	max-width: 50rem;
+}
+table caption:target {
+	background-color: lemonchiffon;
+}
+table caption ul {
+	list-style-type: "* ";
+}
+.nonrec, .rec {
+	border-left-width: 0.5rem;
+	border-color: transparent;
+	background-clip: padding-box;
+}
+.top {
+	font-size: 110%;
+}
+thead th {
+	text-align: center;
+}
+tbody th, #comparison tbody td, .r {
+	text-align: right;
+}
+.nonrec, .rec {
+	background-color: whitesmoke;
+	border-left-style: solid;
+}
+.nonrec + .nonrec, .rec + .rec {
+	border-left-style: none;
+}
+.download {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-column-gap: 1em;
+	align-items: center;
+	margin: 1em 0;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	background-color: skyblue;
+}
+.download a {
+	font-weight: bold;
+	text-decoration: none;
+}
+.download img {
+	vertical-align: middle;
+}
+.download > a, .download > img {
+	grid-column: 1;
+	grid-row: 1;
+}
+.download > span, .download > table {
+	grid-column: 2;
+	grid-row: 1;
+}
+.download > pre {
+	grid-column: 1 / 3;
+	grid-row: 2;
+	margin: 0;
+}
+.download td.op {
+	padding: 0;
+}
+#compatibility {
+	border-collapse: separate;
+}
+#compatibility thead, #compatibility tbody {
+	font-size: 80%;
+}
+#compatibility tbody {
+	border-spacing: 2px;
+}
+#compatibility tbody + tbody > tr:first-child > * {
+	border-top: 1em solid white;
+}
+#compatibility tbody td {
+	text-align: center;
+	padding: 0;
+}
+#compatibility tbody td a {
+	display: block;
+	width: 100%;
+	text-decoration: inherit;
+	color: inherit;
+}
+.y {
+	background-color: #fcf192;
+}
+.m {
+	background-color: #dfe280;
+}
+.n {
+	background-color: #94a7ca;
+}
+.y_to_n {
+	background: linear-gradient(90deg, #fcf192, #94a7ca);
+}
+figure img {
+	max-width: 100%;
+	object-fit: contain;
+}
+.eqnarray {
+	border-spacing: 0;
+	border-collapse: collapse;
+	white-space: nowrap;
+}
+.eqnarray td {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+.eqnarray tr td:nth-child(1) {
+	text-align: right;
+}
+.eqnarray tr td:nth-child(3) {
+	padding-left: 1em;
+}
+hr {
+	width: 40%;
+}
+aside {
+	float: right;
+	clear: right;
+	width: 20vw;
+	margin-right: -22.5vw;
+	margin-bottom: 0.5rem;
+	background-color: papayawhip;
+	font-size: 0.8rem;
+	padding: 0.5rem;
+	overflow: auto;
+}
+aside > :first-child {
+	margin-top: 0;
+}
+aside :last-child {
+	margin-bottom: 0;
+}
+aside ul {
+	padding-left: 1em;
+	list-style-type: none;
+}
+.matrix {
+	display: inline-block;
+	margin-right: 2rem;
+}
+.matrix tbody {
+	font-size: 6pt;
+}
+.matrix td {
+	text-align: center;
+	line-height: 1em;
+	width: 1em;
+	height: 1em;
+	padding: 0;
+}
+.matrix caption {
+	text-align: center;
+}
+.b0 {
+}
+.b1 {
+	background-color: lightgray;
+}
+@media(max-width: 620px) {
+	article {
+		width: 100%;
+	}
+	aside {
+		float: none;
+		clear: none;
+		width: auto;
+		margin-right: 0;
+	}
+}
+</style>
 
-# 更好的Zip炸弹
+原文链接：[A better zip bomb](https://www.bamsoftware.com/hacks/zipbomb/)。 **一切版权归原作者所有。**  
 
-原著：David Fifield [david@bamsoftware.com](mailto:david@bamsoftware.com)
+# 更好的Zip炸弹  
 
-**2019-07-02**
+原著：David Fifield [david@bamsoftware.com](mailto:david@bamsoftware.com)  
 
-更新： 2019-07-03, 2019-07-05, 2019-07-06, 2019-07-08, 2019-07-18, 2019-07-20, 2019-07-22, 2019-07-24, 2019-08-05, 2019-08-19, 2019-08-22, 2019-10-14, 2019-10-18, 2019-10-30, [2019-11-28](https://www.bamsoftware.com/hacks/zipbomb/#xfinity), [2020-07-28](https://www.bamsoftware.com/hacks/zipbomb/#flytech), 2021-01-21, 2021-02-02, [2021-05-03](https://www.bamsoftware.com/hacks/zipbomb/#ios), 2021-07-29
+**2019-07-02**  
 
-## 简述
+更新： 2019-07-03, 2019-07-05, 2019-07-06, 2019-07-08, 2019-07-18, 2019-07-20, 2019-07-22, 2019-07-24, 2019-08-05, 2019-08-19, 2019-08-22, 2019-10-14, 2019-10-18, 2019-10-30, [2019-11-28](#xfinity), [2020-07-28](#flytech), 2021-01-21, 2021-02-02, [2021-05-03](#ios), 2021-07-29  
 
-此文章展示了如何构建一个通过在Zip容器里重叠文件来实现高压缩比且 *非递归的* [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。 “非递归” 指它不需要解压者来解压嵌套在Zip文件里的Zip文件，只需解压一次就够。与输入大小相比，输出大小呈二次方增长。压缩比高达2,800万（10MB→281TB），达到了Zip格式的极限。更高的比率通过64位扩展也可以实现。 这种构建方法只用到了与大部分Zip解析器兼容，最常用的Deflate压缩算法。
+## 简述  
 
-| [zbsm.zip](https://www.bamsoftware.com/hacks/zipbomb/zbsm.zip) | 42 kB | →    | 5.5 GB                          |
-|   ------------------------------------------------------------ | ----- | ---- | ------------------------------- |
-| [zblg.zip](https://www.bamsoftware.com/hacks/zipbomb/zblg.zip) | 10 MB | →    | 281 TB                          |
-| [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/zbxl.zip) | 46 MB | →    | 4.5 PB (Zip64, less compatible) |
+此文章展示了如何构建一个通过在Zip容器里重叠文件来实现高压缩比且 *非递归* 的[Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。 “非递归” 指它不需要解压者来解压嵌套在Zip文件里的Zip文件，解压一次就够。与输入大小相比，输出大小呈二次方增长。压缩比高达2,800万（10MB→281TB），达到了Zip格式的极限。更高的比率通过64位扩展也可以实现。 这种构建方法只用到了与大部分Zip解析器兼容，且最常用的Deflate压缩算法。  
 
-- 源代码:
+<div id=download class=download>
+<img src=https://www.bamsoftware.com/hacks/zipbomb/zip.png alt="">
+<table>
+<tr>
+<td><a href="zbsm.zip" download>zbsm.zip</a></td><td><data value="42374">42 <abbr title=kilobyte>kB</abbr></data></td><td class=op>→</td><td><data value="5461307620">5.5 <abbr title=gigabyte>GB</abbr></data></td></tr>
+<tr><td><a href="zblg.zip" download>zblg.zip</a></td><td><data value="9893525">10 <abbr title=megabyte>MB</abbr></data></td><td class=op>→</td><td><data value="281395456244934">281 <abbr title=terabyte>TB</abbr></data></td></tr>
+<tr><td><a href="zbxl.zip" download>zbxl.zip</a></td><td><data value="45876952">46 <abbr title=megabyte>MB</abbr></data></td><td class=op>→</td><td><data value="4507981427706459">4.5 <abbr title=petabyte>PB</abbr></data> (Zip64, less compatible)</td></tr>
+</table>
+</div>
 
-  `git clone https://www.bamsoftware.com/git/zipbomb.git`
+
+- 源代码:  
+
+  `git clone https://www.bamsoftware.com/git/zipbomb.git`  
 
   [zipbomb-20210121.zip](https://www.bamsoftware.com/hacks/zipbomb/zipbomb-20210121.zip)
 
@@ -27,17 +273,15 @@
 
   `git clone https://www.bamsoftware.com/git/zipbomb-paper.git`
 
-[Presentation video](https://www.bamsoftware.com/talks/woot19-zipbomb/)
+[展示视频](https://www.bamsoftware.com/talks/woot19-zipbomb/)
 
 [Русский перевод](https://habr.com/ru/post/459254/) от [@m1rko](https://habr.com/en/users/m1rko/).
 
 中文翻译: [北岸冷若冰霜](https://zerosun.top/2019/07/07/A-better-zip-bomb/) 和 [雨猫 (此文档)]().
 
-
-
-|                                                              |            |                       |              |                       |              |
+|                                                              | 不进行递归 |                       |              | 递归                  |              |
 | ------------------------------------------------------------ | ---------- | --------------------- | ------------ | --------------------- | ------------ |
-|                                                              | 未解压大小 | 解压后大小            | 比率         | unzipped size         | ratio        |
+|                                                              | 未解压大小 | 解压后大小            | 比率         | 解压后大小            | 比率         |
 | [Cox quine](https://research.swtch.com/zip)                  | 440        | 440                   | 1.0          | ∞                     | ∞            |
 | [Ellingsen quine](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) | 28 809     | 42 569                | 1.5          | ∞                     | ∞            |
 | [42.zip](https://www.unforgettable.dk/)                      | 42 374(*)  | 558 432               | 13.2         | 4 507 981 343 026 016 | 106 billion  |
@@ -468,7 +712,7 @@ Did you find a system that chokes on one of these zip bombs? Did they help you d
 
 - antivirus engines
 
-  Overall, it seems that malware scanners have slowly begun to recognize zip bombs of this kind (or at least the specific samples available for download) as malicious. It would be interesting to see whether the detection is robust or brittle. You could reverse the order of the entries in the central directory, for example, and see whether the zip files are still detected. In the [source code](https://www.bamsoftware.com/hacks/zipbomb/#source), there's a recipe for generating zbsm.extra.zip, which is like zbsm.zip except that it uses [extra-field quoting](https://www.bamsoftware.com/hacks/zipbomb/#extra) instead of [DEFLATE quoting](https://www.bamsoftware.com/hacks/zipbomb/#quote)—if you are a customer of an AV service that detects zbsm.zip but not zbsm.extra.zip, you should ask for an explanation. Another simple variant is [inserting spacer files between the bomb files](https://www.bamsoftware.com/hacks/zipbomb/spacer.txt), which may fool certain overlap-detection algorithms.  Twitter user @TVqQAAMAAAAEAAA [reports](https://twitter.com/TVqQAAMAAAAEAAA/status/1146351962486476801) "McAfee AV on my test machine just exploded." I haven't independently confirmed it, nor do I have details such as a version number.  Tavis Ormandy [points out](https://twitter.com/taviso/status/1146477576132542466) that there are a number of "Timeout" results in [the VirusTotal for zblg.zip](https://www.virustotal.com/gui/file/f1dc920869794df3e258f42f9b99157104cd3f8c14394c1b9d043d6fcda14c0a/detection) [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zblg-20190706.png).  AhnLab-V3, ClamAV, DrWeb, Endgame, F-Secure, GData, K7AntiVirus, K7GW,  MaxSecure, McAfee, McAfee-GW-Edition, Panda, Qihoo-360, Sophos ML,  VBA32. [The results for zbsm.zip](https://www.virustotal.com/gui/file/fb4ff972d21189beec11e05109c4354d0cd6d3b629263d6c950cf8cc3f78bd99/detection) [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zbsm-20190706.png) are similar, though with a different set of timed-out engines: Baido, Bkav, ClamAV, CMC, DrWeb, Endgame, ESET-NOD32, F-Secure, GData, Kingsoft, McAfee-GW-Edition, NANO-Antivirus, Acronis. Interestingly, there are no timeouts in [the results for zbxl.zip](https://www.virustotal.com/gui/file/eafd8f574ea7fd0f345eaa19eae8d0d78d5323c8154592c850a2d78a86817744/detection); [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zbxl-20190706.png) perhaps this means that some antivirus doesn't support Zip64?  Forum user 100 [reported](https://forum.eset.com/topic/20123-zip-bombs-with-zip64-not-detected/) that a certain ESET product did not detect zbxl.zip, possibly because it uses Zip64. An update in the thread three days later showed the product being updated to detect it.  In [ClamAV bug 12356](https://bugzilla.clamav.net/show_bug.cgi?id=12356), Hanno Böck reported that zblg.zip caused high CPU usage in clamscan. [An initial patch](https://bugzilla.clamav.net/show_bug.cgi?id=12356#c5) to detect overlapping files [turned out to be incomplete](https://seclists.org/oss-sec/2019/q3/121) because it only checked adjacent pairs of files. (I personally mishandled this issue by posting details of a workaround on the bug tracker, instead of reporting it privately.) [A later patch](https://bugzilla.clamav.net/show_bug.cgi?id=12356#c14) imposed a time limit on file analysis.  2020-07-28: FlyTech Videos presented a [video testing various zip bombs](https://www.youtube.com/watch?v=peeYOqejWfg), including [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/#zbxl), against Windows Defender, Windows Explorer, and 7-zip.  In my web server logs, I noticed a number of referers that appear to point to bug trackers.  http://jira.athr.ru/browse/WEB-12882 https://project.avira.org/browse/ENGINE-2307 https://project.avira.org/browse/ENGINE-2363 https://topdesk-imp.cicapp.nl/tas/secure/mango/window/4 https://jira-eng-rtp3.cisco.com/jira/browse/AMP4E-4849 https://jira-eng-sjc1.cisco.com/jira/browse/CLAM-965 https://flightdataservices.atlassian.net/secure/RapidBoard.jspa?selectedIssue=FDS-136 https://projects.ucd.gpn.gov.uk/browse/VULN-1483 https://testrail-int.qa1.immunet.com/index.php?/cases/view/923720 http://redmine-int-prod.intranet.cnim.net/issues/5596 https://bugs.drweb.com/view.php?id=159759 https://dev-jira.dynatrace.org/browse/APM-188227 https://webgate.ec.europa.eu/CITnet/jira/browse/EPREL-2150 https://jira.egnyte-it.com/browse/IN-8480 https://jira.hq.eset.com/browse/CCDBL-1492 https://bugzilla.olympus.f5net.com/show_bug.cgi?id=819053 https://mantis.fortinet.com/bug_view_page.php?bug_id=0570222 https://redmine.joesecurity.org:64998/issues/4705 http://dev.maildev.jp/mantis/view.php?id=5839 https://confluence.managed.lu/pages/viewpage.action?pageId=47974242 https://jira-lvs.prod.mcafee.com/browse/TSWS-653 https://jira.modulbank.ru/browse/PV-33012 http://jira.netzwerk.intern:8080/browse/SALES-81 https://jira-hq.paloaltonetworks.local/browse/CON-43391 https://jira-hq.paloaltonetworks.local/browse/GSRT-11680 https://jira-hq.paloaltonetworks.local/browse/PAN-124201 https://paynearme.atlassian.net/browse/PNM-4494 https://jira.proofpoint.com/jira/browse/PE-29410 https://dev.pulsesecure.net/jira/browse/PRS-379163 https://qualtrics.atlassian.net/browse/APP-326 https://jira.sastdev.net/browse/CIS-2819 https://jira.sastdev.net/secure/RapidBoard.jspa?selectedIssue=EC-709 https://bugzilla.seeburger.de/show_bug.cgi?id=89294 https://svm.cert.siemens.com/auseno/create_edit_vulnerability.php?vulnid=48573 https://jira.sophos.net/browse/CPISSUE-6560 https://jira.vrt.sourcefire.com/browse/TT-1070 https://task.jarvis.trendmicro.com/browse/JPSE-10432 https://segjira.trendmicro.com:8443/browse/SEG-55636 https://segjira.trendmicro.com:8443/browse/SEG-58824 https://ucsc-cgl.atlassian.net/secure/RapidBoard.jspa?selectedIssue=SEAB-327 https://jira.withbc.com/browse/BC-43950 https://zscaler.zendesk.com/agent/tickets/849971
+  Overall, it seems that malware scanners have slowly begun to recognize zip bombs of this kind (or at least the specific samples available for download) as malicious. It would be interesting to see whether the detection is robust or brittle. You could reverse the order of the entries in the central directory, for example, and see whether the zip files are still detected. In the [source code](https://www.bamsoftware.com/hacks/zipbomb/#source), there's a recipe for generating zbsm.extra.zip, which is like zbsm.zip except that it uses [extra-field quoting](https://www.bamsoftware.com/hacks/zipbomb/#extra) instead of [DEFLATE quoting](https://www.bamsoftware.com/hacks/zipbomb/#quote)—if you are a customer of an AV service that detects zbsm.zip but not zbsm.extra.zip, you should ask for an explanation. Another simple variant is [inserting spacer files between the bomb files](https://www.bamsoftware.com/hacks/zipbomb/spacer.txt), which may fool certain overlap-detection algorithms.  Twitter user @TVqQAAMAAAAEAAA [reports](https://twitter.com/TVqQAAMAAAAEAAA/status/1146351962486476801) "McAfee AV on my test machine just exploded." I haven't independently confirmed it, nor do I have details such as a version number.  Tavis Ormandy [points out](https://twitter.com/taviso/status/1146477576132542466) that there are a number of "Timeout" results in [the VirusTotal for zblg.zip](https://www.virustotal.com/gui/file/f1dc920869794df3e258f42f9b99157104cd3f8c14394c1b9d043d6fcda14c0a/detection) [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zblg-20190706.png).  AhnLab-V3, ClamAV, DrWeb, Endgame, F-Secure, GData, K7AntiVirus, K7GW,  MaxSecure, McAfee, McAfee-GW-Edition, Panda, Qihoo-360, Sophos ML,  VBA32. [The results for zbsm.zip](https://www.virustotal.com/gui/file/fb4ff972d21189beec11e05109c4354d0cd6d3b629263d6c950cf8cc3f78bd99/detection) [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zbsm-20190706.png) are similar, though with a different set of timed-out engines: Baido, Bkav, ClamAV, CMC, DrWeb, Endgame, ESET-NOD32, F-Secure, GData, Kingsoft, McAfee-GW-Edition, NANO-Antivirus, Acronis. Interestingly, there are no timeouts in [the results for zbxl.zip](https://www.virustotal.com/gui/file/eafd8f574ea7fd0f345eaa19eae8d0d78d5323c8154592c850a2d78a86817744/detection); [(screenshot 2019-07-06)](https://www.bamsoftware.com/hacks/zipbomb/vt-zbxl-20190706.png) perhaps this means that some antivirus doesn't support Zip64?  Forum user 100 [reported](https://forum.eset.com/topic/20123-zip-bombs-with-zip64-not-detected/) that a certain ESET product did not detect zbxl.zip, possibly because it uses Zip64. An update in the thread three days later showed the product being updated to detect it.  In [ClamAV bug 12356](https://bugzilla.clamav.net/show_bug.cgi?id=12356), Hanno Böck reported that zblg.zip caused high CPU usage in clamscan. [An initial patch](https://bugzilla.clamav.net/show_bug.cgi?id=12356#c5) to detect overlapping files [turned out to be incomplete](https://seclists.org/oss-sec/2019/q3/121) because it only checked adjacent pairs of files. (I personally mishandled this issue by posting details of a workaround on the bug tracker, instead of reporting it privately.) [A later patch](https://bugzilla.clamav.net/show_bug.cgi?id=12356#c14) imposed a time limit on file analysis.  <span id="flytech)">2020-07-28</span>: FlyTech Videos presented a [video testing various zip bombs](https://www.youtube.com/watch?v=peeYOqejWfg), including [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/#zbxl), against Windows Defender, Windows Explorer, and 7-zip.  In my web server logs, I noticed a number of referers that appear to point to bug trackers.  http://jira.athr.ru/browse/WEB-12882 https://project.avira.org/browse/ENGINE-2307 https://project.avira.org/browse/ENGINE-2363 https://topdesk-imp.cicapp.nl/tas/secure/mango/window/4 https://jira-eng-rtp3.cisco.com/jira/browse/AMP4E-4849 https://jira-eng-sjc1.cisco.com/jira/browse/CLAM-965 https://flightdataservices.atlassian.net/secure/RapidBoard.jspa?selectedIssue=FDS-136 https://projects.ucd.gpn.gov.uk/browse/VULN-1483 https://testrail-int.qa1.immunet.com/index.php?/cases/view/923720 http://redmine-int-prod.intranet.cnim.net/issues/5596 https://bugs.drweb.com/view.php?id=159759 https://dev-jira.dynatrace.org/browse/APM-188227 https://webgate.ec.europa.eu/CITnet/jira/browse/EPREL-2150 https://jira.egnyte-it.com/browse/IN-8480 https://jira.hq.eset.com/browse/CCDBL-1492 https://bugzilla.olympus.f5net.com/show_bug.cgi?id=819053 https://mantis.fortinet.com/bug_view_page.php?bug_id=0570222 https://redmine.joesecurity.org:64998/issues/4705 http://dev.maildev.jp/mantis/view.php?id=5839 https://confluence.managed.lu/pages/viewpage.action?pageId=47974242 https://jira-lvs.prod.mcafee.com/browse/TSWS-653 https://jira.modulbank.ru/browse/PV-33012 http://jira.netzwerk.intern:8080/browse/SALES-81 https://jira-hq.paloaltonetworks.local/browse/CON-43391 https://jira-hq.paloaltonetworks.local/browse/GSRT-11680 https://jira-hq.paloaltonetworks.local/browse/PAN-124201 https://paynearme.atlassian.net/browse/PNM-4494 https://jira.proofpoint.com/jira/browse/PE-29410 https://dev.pulsesecure.net/jira/browse/PRS-379163 https://qualtrics.atlassian.net/browse/APP-326 https://jira.sastdev.net/browse/CIS-2819 https://jira.sastdev.net/secure/RapidBoard.jspa?selectedIssue=EC-709 https://bugzilla.seeburger.de/show_bug.cgi?id=89294 https://svm.cert.siemens.com/auseno/create_edit_vulnerability.php?vulnid=48573 https://jira.sophos.net/browse/CPISSUE-6560 https://jira.vrt.sourcefire.com/browse/TT-1070 https://task.jarvis.trendmicro.com/browse/JPSE-10432 https://segjira.trendmicro.com:8443/browse/SEG-55636 https://segjira.trendmicro.com:8443/browse/SEG-58824 https://ucsc-cgl.atlassian.net/secure/RapidBoard.jspa?selectedIssue=SEAB-327 https://jira.withbc.com/browse/BC-43950 https://zscaler.zendesk.com/agent/tickets/849971
 
 - web browsers
 
@@ -486,7 +730,7 @@ Did you find a system that chokes on one of these zip bombs? Did they help you d
 
   Sometime around 2019-07-23 it seems that this page, and *every* page on a *.bamsoftware.com domain, got added to the [Safe Browsing](https://safebrowsing.google.com/) service used by web browsers to block malware and phishing sites. [Site status check](https://transparencyreport.google.com/safe-browsing/search?url=bamsoftware.com), [block page screenshot](https://www.bamsoftware.com/hacks/zipbomb/safebrowsing-www.bamsoftware.com-20190724.png). From a few quick checks, it looks like pages on bamsoftware.com have been demoted or delisted on the google.com search engine as well.  The Safe Browsing block is a bit annoying, because it disrupted [Snowflake](https://snowflake.torproject.org/), a completely unrelated service that happened to use the domain snowflake-broker.bamsoftware.com, which did not even host any files but was strictly a web API server. See [#31230 Firefox addon blocked from agent by Google Safe Browsing service](https://bugs.torproject.org/31230).  The Safe Browsing block seemed to end on or before [2019-08-16](https://www.bamsoftware.com/hacks/zipbomb/transparencyreport.google-www.bamsoftware.com-20190816.png).
 
-- Xfinity xFi Protected Browsing
+- <span id="xfinity">Xfinity xFi Protected Browsing</span>
 
   On 2019-11-26, I was informed by Hooman Mohajeri Moghaddam that the Comcast Xfinity xFi ["Protected Browsing"](https://www.vice.com/en_us/article/evm3qk/comcast-blocking-paypal-customers-say-forum-net-neutrality) feature blocks the bamsoftware.com domain, including this page ([screenshot](https://www.bamsoftware.com/hacks/zipbomb/xfinity-blockpage.png)).
 
@@ -494,7 +738,7 @@ Did you find a system that chokes on one of these zip bombs? Did they help you d
 
   The D programming language [made a modification](https://issues.dlang.org/show_bug.cgi?id=20027) to the [std.zip module](https://dlang.org/library/std/zip.html) to detect overlapping files.
 
-- Apple iOS and iPadOS
+- <span id="ios">Apple iOS and iPadOS</span>
 
   Dzmitry Plotnikau sent me a report saying that a zip bomb could use up all cache storage on iPhones running iOS 12 and 13, even if only opened using "Quick look." The exhaustion of storage could have various side effects, including misbehaving apps, deletion of local cloud files, and OS crashes, in some cases requiring a factory reset to remedy. The bug was mitigated in iOS 14.0 (and likely other, contemporaneous point release of iOS and iPadOS). See [HT211850](https://support.apple.com/en-us/HT211850) under the "libarchive" heading.
 
