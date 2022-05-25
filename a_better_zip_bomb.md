@@ -1,244 +1,4 @@
-<style>
-article {
-	width: 75%;
-	max-width: 50rem;
-}
-a {
-	color: royalblue;
-}
-a.footnote {
-	text-decoration: none;
-}
-small, #comparison caption, .download pre {
-	font-size: 82%;
-}
-abbr {
-	text-decoration: none;
-}
-kbd {
-	font-weight: bold;
-}
-section {
-	margin-top: 4rem;
-}
-date {
-	white-space: nowrap;
-}
-#summary {
-	margin: 0 auto;
-	padding: 1rem;
-	width: 80%;
-	background-color: whitesmoke;
-}
-#summary h2 {
-	font-size: inherit;
-	display: inline;
-	margin-right: 1em;
-}
-#summary h2 + * {
-	display: inline;
-}
-#summary > :first-child {
-	margin-top: 0;
-}
-#summary :last-child {
-	margin-bottom: 0;
-}
-#source pre {
-	margin: 0;
-}
-table {
-	border-collapse: collapse;
-}
-table th, table td
-{
-	padding: 0 0.5em;
-	white-space: nowrap;
-	font-variant-numeric: tabular-nums;
-	vertical-align: baseline;
-}
-table tr > :first-child {
-	padding-left: 0;
-}
-table caption {
-	text-align: inherit;
-	caption-side: bottom;
-	max-width: 50rem;
-}
-table caption:target {
-	background-color: lemonchiffon;
-}
-table caption ul {
-	list-style-type: "* ";
-}
-.nonrec, .rec {
-	border-left-width: 0.5rem;
-	border-color: transparent;
-	background-clip: padding-box;
-}
-.top {
-	font-size: 110%;
-}
-thead th {
-	text-align: center;
-}
-tbody th, #comparison tbody td, .r {
-	text-align: right;
-}
-.nonrec, .rec {
-	background-color: whitesmoke;
-	border-left-style: solid;
-}
-.nonrec + .nonrec, .rec + .rec {
-	border-left-style: none;
-}
-.download {
-	display: grid;
-	grid-template-columns: max-content 1fr;
-	grid-column-gap: 1em;
-	align-items: center;
-	margin: 1em 0;
-	padding: 0.5em;
-	border-radius: 0.5em;
-	background-color: skyblue;
-}
-.download a {
-	font-weight: bold;
-	text-decoration: none;
-}
-.download img {
-	vertical-align: middle;
-}
-.download > a, .download > img {
-	grid-column: 1;
-	grid-row: 1;
-}
-.download > span, .download > table {
-	grid-column: 2;
-	grid-row: 1;
-}
-.download > pre {
-	grid-column: 1 / 3;
-	grid-row: 2;
-	margin: 0;
-}
-.download td.op {
-	padding: 0;
-}
-#compatibility {
-	border-collapse: separate;
-}
-#compatibility thead, #compatibility tbody {
-	font-size: 80%;
-}
-#compatibility tbody {
-	border-spacing: 2px;
-}
-#compatibility tbody + tbody > tr:first-child > * {
-	border-top: 1em solid white;
-}
-#compatibility tbody td {
-	text-align: center;
-	padding: 0;
-}
-#compatibility tbody td a {
-	display: block;
-	width: 100%;
-	text-decoration: inherit;
-	color: inherit;
-}
-.y {
-	background-color: #fcf192;
-}
-.m {
-	background-color: #dfe280;
-}
-.n {
-	background-color: #94a7ca;
-}
-.y_to_n {
-	background: linear-gradient(90deg, #fcf192, #94a7ca);
-}
-figure img {
-	max-width: 100%;
-	object-fit: contain;
-}
-.eqnarray {
-	border-spacing: 0;
-	border-collapse: collapse;
-	white-space: nowrap;
-}
-.eqnarray td {
-	padding: 0;
-	margin: 0;
-	border: 0;
-}
-.eqnarray tr td:nth-child(1) {
-	text-align: right;
-}
-.eqnarray tr td:nth-child(3) {
-	padding-left: 1em;
-}
-hr {
-	width: 40%;
-}
-aside {
-	float: right;
-	clear: right;
-	width: 20vw;
-	margin-right: -22.5vw;
-	margin-bottom: 0.5rem;
-	background-color: papayawhip;
-	font-size: 0.8rem;
-	padding: 0.5rem;
-	overflow: auto;
-}
-aside > :first-child {
-	margin-top: 0;
-}
-aside :last-child {
-	margin-bottom: 0;
-}
-aside ul {
-	padding-left: 1em;
-	list-style-type: none;
-}
-.matrix {
-	display: inline-block;
-	margin-right: 2rem;
-}
-.matrix tbody {
-	font-size: 6pt;
-}
-.matrix td {
-	text-align: center;
-	line-height: 1em;
-	width: 1em;
-	height: 1em;
-	padding: 0;
-}
-.matrix caption {
-	text-align: center;
-}
-.b0 {
-}
-.b1 {
-	background-color: lightgray;
-}
-@media(max-width: 620px) {
-	article {
-		width: 100%;
-	}
-	aside {
-		float: none;
-		clear: none;
-		width: auto;
-		margin-right: 0;
-	}
-}
-</style>
-
-原文链接：[A better zip bomb](https://www.bamsoftware.com/hacks/zipbomb/)。 **一切版权归原作者所有。**  
+原文链接：[A better zip bomb](https://www.bamsoftware.com/hacks/zipbomb/)。 **一切版权归原作者所有。**
 
 # 更好的Zip炸弹  
 
@@ -248,20 +8,14 @@ aside ul {
 
 更新： 2019-07-03, 2019-07-05, 2019-07-06, 2019-07-08, 2019-07-18, 2019-07-20, 2019-07-22, 2019-07-24, 2019-08-05, 2019-08-19, 2019-08-22, 2019-10-14, 2019-10-18, 2019-10-30, [2019-11-28](#xfinity), [2020-07-28](#flytech), 2021-01-21, 2021-02-02, [2021-05-03](#ios), 2021-07-29  
 
-## 简述  
+# 简述  
 
-此文章展示了如何构建一个通过在Zip容器里重叠文件来实现高压缩比且 *非递归* 的[Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。 “非递归” 指它不需要解压者来解压嵌套在Zip文件里的Zip文件，解压一次就够。与输入大小相比，输出大小呈二次方增长。压缩比高达2,800万（10MB→281TB），达到了Zip格式的极限。更高的比率通过64位扩展也可以实现。 这种构建方法只用到了与大部分Zip解析器兼容，且最常用的Deflate压缩算法。  
+此文章展示了如何构建一个通过在 Zip 容器里重叠文件来实现高压缩比且*非递归* 的 [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。“非递归”指它不需要解压者来解压嵌套在Zip文件里的 Zip 文件，只需解压一次。与输入大小相比，输出大小呈二次方增长。压缩比高达 2,800 万（10MB→281TB），达到了Zip格式的极限。更高的比率通过64位扩展也可以实现。这种构建方法只用到了与大部分Zip解析器兼容，且最常用的 Deflate 压缩算法。 
 
-<div id=download class=download>
-<img src=https://www.bamsoftware.com/hacks/zipbomb/zip.png alt="">
-<table>
-<tr>
-<td><a href="zbsm.zip" download>zbsm.zip</a></td><td><data value="42374">42 <abbr title=kilobyte>kB</abbr></data></td><td class=op>→</td><td><data value="5461307620">5.5 <abbr title=gigabyte>GB</abbr></data></td></tr>
-<tr><td><a href="zblg.zip" download>zblg.zip</a></td><td><data value="9893525">10 <abbr title=megabyte>MB</abbr></data></td><td class=op>→</td><td><data value="281395456244934">281 <abbr title=terabyte>TB</abbr></data></td></tr>
-<tr><td><a href="zbxl.zip" download>zbxl.zip</a></td><td><data value="45876952">46 <abbr title=megabyte>MB</abbr></data></td><td class=op>→</td><td><data value="4507981427706459">4.5 <abbr title=petabyte>PB</abbr></data> (Zip64, less compatible)</td></tr>
-</table>
-</div>
-
+| [zbsm.zip](https://www.bamsoftware.com/hacks/zipbomb/zbsm.zip) | 42 kB | →    | 5.5 GB                          |
+| ------------------------------------------------------------ | ----- | ---- | ------------------------------- |
+| [zblg.zip](https://www.bamsoftware.com/hacks/zipbomb/zblg.zip) | 10 MB | →    | 281 TB                          |
+| [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/zbxl.zip) | 46 MB | →    | 4.5 PB (Zip64, less compatible) |
 
 - 源代码:  
 
@@ -277,7 +31,9 @@ aside ul {
 
 [Русский перевод](https://habr.com/ru/post/459254/) от [@m1rko](https://habr.com/en/users/m1rko/).
 
-中文翻译: [北岸冷若冰霜](https://zerosun.top/2019/07/07/A-better-zip-bomb/) 和 [雨猫 (此文档)]().
+中文翻译: [北岸冷若冰霜](https://zerosun.top/2019/07/07/A-better-zip-bomb/) 和 [雨猫 (此文档)](https://github.com/amenekowo/translated-docs/blob/main/a_better_zip_bomb.md).
+
+
 
 |                                                              | 不进行递归 |                       |              | 递归                  |              |
 | ------------------------------------------------------------ | ---------- | --------------------- | ------------ | --------------------- | ------------ |
@@ -289,9 +45,13 @@ aside ul {
 | 这种方法                                                     | 9 893 525  | 281 395 456 244 934   | 28 million   | 281 395 456 244 934   | 28 million   |
 | 这种方法 (使用Zip64)                                         | 45 876 952 | 4 507 981 427 706 459 | 98 million   | 4 507 981 427 706 459 | 98 million   |
 
-I would like to know/credit the maker of 42.zip but haven't been able to find a source—[let me know](https://www.bamsoftware.com/hacks/zipbomb/#contact) if you have any info.
+- 注：有两种版本的42.zip，[旧版](https://web.archive.org/web/20120222083624/http://www.unforgettable.dk/)为 42 374 字节，[新版](https://web.archive.org/web/20120301154142/http://www.unforgettable.dk/)为 42 838 字节。区别是新版在解压前需要输入密码。 我们仅与旧版本文件对比。如果你需要的话，可以到[这里](https://www.bamsoftware.com/hacks/zipbomb/42.zip)下载。
 
-Compression bombs that use the zip format must cope with the fact that DEFLATE, the compression algorithm most commonly supported by zip parsers, [cannot achieve](https://www.zlib.net/zlib_tech.html) a compression ratio greater than 1032. For this reason, zip bombs typically rely on recursive decompression, nesting zip files within zip files to get an extra factor of 1032 with each layer. But the trick only works on implementations that unzip recursively, and most do not. The best-known zip bomb, [42.zip](https://www.unforgettable.dk/), expands to a formidable 4.5 PB if all six of its layers are recursively unzipped, but a trifling 0.6 MB at the top layer. Zip quines, like those of [Ellingsen](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) and [Cox](https://research.swtch.com/zip), which contain a copy of themselves and thus expand infinitely if recursively unzipped, are likewise perfectly safe to unzip once.
+- 我想找出42.zip的作者，但我找不到任何来源。如果你知道的话，[请告诉我](https://www.bamsoftware.com/hacks/zipbomb/#contact)。
+  
+---
+
+使用Zip格式的压缩炸弹必须面对一个事实：最常被Zip解析器支持的压缩算法DEFLATE**[达不到](https://www.zlib.net/zlib_tech.html)**比1032更高的压缩率。因此，Zip炸弹通常依靠递归（在Zip文件内存放Zip文件）实现每一层高于1032的额外压缩率。但这种方法只有在递归解压时才有效，而大多数软件不会全部递归解压。最有名的Zip炸弹（[42.zip](https://www.unforgettable.dk/)），如果其中的六层全部解压，解压后的文件大小可达吓人的4.5PB，但第一层解压后，只有微小的0.6MB。*Zip quines*，比如说 [Ellingsen](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) 和 [Cox](https://research.swtch.com/zip)，在Zip包中有自己的副本，如果递归解压时才会膨胀到无限。只解压一次的话，是非常安全的。
 
 This article shows how to construct a non-recursive zip bomb whose compression ratio surpasses the DEFLATE limit of 1032. It works by overlapping files inside the zip container, in order to reference a "kernel" of highly compressed data in multiple files, without making multiple copies of it. The zip bomb's output size grows quadratically in the input size; i.e., the compression ratio gets better as the bomb gets bigger. The construction depends on features of both zip and DEFLATE—it is not directly portable to other file formats or compression algorithms. It is compatible with most zip parsers, the exceptions being "streaming" parsers that parse in one pass without first consulting the zip file's central directory. We try to balance two conflicting goals:
 
