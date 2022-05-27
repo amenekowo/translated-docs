@@ -35,17 +35,17 @@
 
 
 
-|                                                              | 不进行递归 |                       |              | 递归                  |              |
-| ------------------------------------------------------------ | ---------- | --------------------- | ------------ | --------------------- | ------------ |
-|                                                              | 未解压大小 | 解压后大小            | 比率         | 解压后大小            | 比率         |
-| [Cox quine](https://research.swtch.com/zip)                  | 440        | 440                   | 1.0          | ∞                     | ∞            |
-| [Ellingsen quine](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) | 28 809     | 42 569                | 1.5          | ∞                     | ∞            |
-| [42.zip](https://www.unforgettable.dk/)                      | 42 374(*)  | 558 432               | 13.2         | 4 507 981 343 026 016 | 106 billion  |
-| 这种方法                                                     | 42 374     | 5 461 307 620         | 129 thousand | 5 461 307 620         | 129 thousand |
-| 这种方法                                                     | 9 893 525  | 281 395 456 244 934   | 28 million   | 281 395 456 244 934   | 28 million   |
-| 这种方法 (使用Zip64)                                         | 45 876 952 | 4 507 981 427 706 459 | 98 million   | 4 507 981 427 706 459 | 98 million   |
+|                                                              | 不进行递归                    |                       |              | 递归                             |              |
+| ------------------------------------------------------------ | ----------------------------- | --------------------- | ------------ | -------------------------------- | ------------ |
+|                                                              | 未解压大小                    | 解压后大小            | 比率         | 解压后大小                       | 比率         |
+| [Cox quine](https://research.swtch.com/zip)                  | 440 (0.43K)                   | 440 (0.43K)           | 1.0          | ∞                                | ∞            |
+| [Ellingsen quine](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) | 28 809 (28.1K)                | 42 569 (41.6K)        | 1.5          | ∞                                | ∞            |
+| [42.zip](https://www.unforgettable.dk/)                      | [42 374](#42zipnote) (41.38K) | 558 432 (545.34K)     | 13.2         | 4 507 981 343 026 016 (4099.99T) | 106 billion  |
+| 这种方法                                                     | 42 374 (41.38K)               | 5 461 307 620 (5.09G) | 129 thousand | 5 461 307 620 (5.09G)            | 129 thousand |
+| 这种方法                                                     | 9 893 525 ()                  | 281 395 456 244 934   | 28 million   | 281 395 456 244 934              | 28 million   |
+| 这种方法 (使用Zip64)                                         | 45 876 952                    | 4 507 981 427 706 459 | 98 million   | 4 507 981 427 706 459            | 98 million   |
 
-- 注：有两种版本的42.zip，[旧版](https://web.archive.org/web/20120222083624/http://www.unforgettable.dk/)为 42 374 字节，[新版](https://web.archive.org/web/20120301154142/http://www.unforgettable.dk/)为 42 838 字节。区别是新版在解压前需要输入密码。 我们仅与旧版本文件对比。如果你需要的话，可以到[这里](https://www.bamsoftware.com/hacks/zipbomb/42.zip)下载。
+- <span id=42zipnote>注：有两种版本的42.zip，[旧版](https://web.archive.org/web/20120222083624/http://www.unforgettable.dk/)为 42 374 字节，[新版](https://web.archive.org/web/20120301154142/http://www.unforgettable.dk/)为 42 838 字节。区别是新版在解压前需要输入密码。 我们仅与旧版本文件对比。如果你需要的话，可以到[这里](https://www.bamsoftware.com/hacks/zipbomb/42.zip)下载。</span>
 
 - 我想找出42.zip的作者，但我找不到任何来源。如果你知道的话，[请告诉我](https://www.bamsoftware.com/hacks/zipbomb/#contact)。
   
@@ -53,7 +53,7 @@
 
 使用Zip格式的压缩炸弹必须面对一个事实：最常被Zip解析器支持的压缩算法DEFLATE**[达不到](https://www.zlib.net/zlib_tech.html)**比1032更高的压缩率。因此，Zip炸弹通常依靠递归（在Zip文件内存放Zip文件）实现每一层高于1032的额外压缩率。但这种方法只有在递归解压时才有效，而大多数软件不会全部递归解压。最有名的Zip炸弹（[42.zip](https://www.unforgettable.dk/)），如果其中的六层全部解压，解压后的文件大小可达吓人的4.5PB，但第一层解压后，只有微小的0.6MB。*Zip quines*，比如说 [Ellingsen](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) 和 [Cox](https://research.swtch.com/zip)，在Zip包中有自己的副本。递归解压时才会膨胀到无限。只解压一次的话，是非常安全的。
 
-This article shows how to construct a non-recursive zip bomb whose compression ratio surpasses the DEFLATE limit of 1032. It works by overlapping files inside the zip container, in order to reference a "kernel" of highly compressed data in multiple files, without making multiple copies of it. The zip bomb's output size grows quadratically in the input size; i.e., the compression ratio gets better as the bomb gets bigger. The construction depends on features of both zip and DEFLATE—it is not directly portable to other file formats or compression algorithms. It is compatible with most zip parsers, the exceptions being "streaming" parsers that parse in one pass without first consulting the zip file's central directory. We try to balance two conflicting goals:
+这篇文章说明了如何构建一个超越DEFLATE压缩极限（即压缩率1032）的非递归Zip 炸弹。它通过在 Zip 容器内叠加文件, in order to reference a "kernel" of highly compressed data in multiple files, without making multiple copies of it. The zip bomb's output size grows quadratically in the input size; i.e., the compression ratio gets better as the bomb gets bigger. The construction depends on features of both zip and DEFLATE—it is not directly portable to other file formats or compression algorithms. It is compatible with most zip parsers, the exceptions being "streaming" parsers that parse in one pass without first consulting the zip file's central directory. We try to balance two conflicting goals:
 
 - Maximize the compression ratio. We define the compression ratio as the the sum of the sizes of all the files contained the in the zip file, divided by the size of the zip file itself. It does not count filenames or other filesystem metadata, only contents.
 - Be compatible. Zip is a tricky format and parsers differ, especially around edge cases and optional features. Avoid taking advantage of tricks that only work with certain parsers. We will remark on certain ways to increase the efficiency of the zip bomb that come with some loss of compatibility.
@@ -507,3 +507,4 @@ Did you find a system that chokes on one of these zip bombs? Did they help you d
 It's time to put an end to Facebook. Working there is not ethically neutral: every day that you go into work, you are doing something wrong. If you have a Facebook account, delete it. If you work at Facebook, quit.
 
 And let us not forget that the National Security Agency must be destroyed. 
+Agency must be destroyed. 
