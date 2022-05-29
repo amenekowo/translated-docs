@@ -10,12 +10,12 @@
 
 # 简述  
 
-此文章展示了如何构建一个通过在 Zip 容器里重叠文件来实现高压缩比且*非递归* 的 [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。“非递归”指它不需要解压者来解压嵌套在Zip文件里的 Zip 文件，只需解压一次。与输入大小相比，输出大小呈二次方增长。压缩比高达 2,800 万（10MB→281TB），达到了 Zip 格式的极限。更高的比率通过64位扩展也可以实现。这种构建方法只用到了与大部分Zip解析器兼容，且最常用的 Deflate 压缩算法。 
+此文章展示了如何构建一个通过在 Zip 容器里重叠文件来实现高压缩比且*非递归* 的 [Zip 炸弹](https://zh.wikipedia.org/wiki/Zip_%E7%82%B8%E5%BC%B9) 。“非递归”指它不需要解压者来解压嵌套在Zip文件里的 Zip 文件，只需解压一次。与输入大小相比，输出大小呈二次方增长。压缩比高达 2,800 万（10MB→281TB），达到了 Zip 格式的极限。更高的比率通过64位扩展也可以实现。这种构建方法只用到了与大部分Zip解析器兼容，且最常用的 Deflate 压缩算法。
 
 | [zbsm.zip](https://www.bamsoftware.com/hacks/zipbomb/zbsm.zip) | 42 kB | →    | 5.5 GB                          |
-| ------------------------------------------------------------ | ----- | ---- | ------------------------------- |
+| ------------------------------------------------------------   | ----- | ---- | ------------------------------- |
 | [zblg.zip](https://www.bamsoftware.com/hacks/zipbomb/zblg.zip) | 10 MB | →    | 281 TB                          |
-| [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/zbxl.zip) | 46 MB | →    | 4.5 PB (Zip64, less compatible) |
+| [zbxl.zip](https://www.bamsoftware.com/hacks/zipbomb/zbxl.zip) | 46 MB | →    | 4.5 PB (Zip64,较差兼容性)         |
 
 - 源代码:  
 
@@ -42,8 +42,8 @@
 | [Ellingsen quine](https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/) | 28 809 (28.1K)                | 42 569 (41.6K)        | 1.5          | ∞                                | ∞            |
 | [42.zip](https://www.unforgettable.dk/)                      | [42 374](#42zipnote) (41.38K) | 558 432 (545.34K)     | 13.2         | 4 507 981 343 026 016 (4099.99T) | 106 billion  |
 | 这种方法                                                     | 42 374 (41.38K)               | 5 461 307 620 (5.09G) | 129 thousand | 5 461 307 620 (5.09G)            | 129 thousand |
-| 这种方法                                                     | 9 893 525 ()                  | 281 395 456 244 934   | 28 million   | 281 395 456 244 934              | 28 million   |
-| 这种方法 (使用Zip64)                                         | 45 876 952                    | 4 507 981 427 706 459 | 98 million   | 4 507 981 427 706 459            | 98 million   |
+| 这种方法                                                     | 9 893 525 (9.44M)                  | 281 395 456 244 934 (255.93T)   | 28 million   | 281 395 456 244 934              | 28 million   |
+| 这种方法 (使用Zip64)                                         | 45 876 952 (43.75M)                   | 4 507 981 427 706 459 (4099.99T) | 98 million   | 4 507 981 427 706 459 (4099.99T)            | 98 million   |
 
 - <span id=42zipnote>注：有两种版本的42.zip，[旧版](https://web.archive.org/web/20120222083624/http://www.unforgettable.dk/)为 42 374 字节，[新版](https://web.archive.org/web/20120301154142/http://www.unforgettable.dk/)为 42 838 字节。区别是新版在解压前需要输入密码。 我们仅与旧版本文件对比。如果你需要的话，可以到[这里](https://www.bamsoftware.com/hacks/zipbomb/42.zip)下载。</span>
 
